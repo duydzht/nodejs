@@ -1,0 +1,23 @@
+{
+    "name": "lab",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/duydzht/nodejs.git"
+    },
+    "author": "Duy",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/duydzht/nodejs/issues"
+    },
+    "homepage": "https://github.com/duydzht/nodejs#readme",
+    "devDependencies": {
+        "nodemon": "^2.0.14"
+    }
+}
