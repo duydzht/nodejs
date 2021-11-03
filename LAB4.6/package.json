@@ -1,0 +1,32 @@
+{
+    "name": "lab",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "beautiful": "prettier --single-quote --trailing-comma all --tab-width 4 --write \"routes/**/*.{js,json,scss}\"",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/duydzht/nodejs.git"
+    },
+    "author": "Duy",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/duydzht/nodejs/issues"
+    },
+    "homepage": "https://github.com/duydzht/nodejs#readme",
+    "devDependencies": {
+        "express": "^4.17.1",
+        "nodemon": "^2.0.14"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "ejs": "^3.1.6",
+        "express-handlebars": "^3.0.2",
+        "prettier": "^2.4.1",
+        "pug": "^3.0.2"
+    }
+}
