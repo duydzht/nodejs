@@ -33,7 +33,7 @@ app.use(errorController.get404);
 
 mongoose
     .connect(
-        'mongodb://127.0.0.1:27017/lab_nodejs_db'
+        'mongodb://127.0.0.1:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
     )
     .then((result) => {
         app.listen(3000);
