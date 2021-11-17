@@ -12,19 +12,19 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-// const User = require('./models/user');
+const User = require('./models/user');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use((req, res, next) => {
-//     User.findByPk('61930fd25dc05cdb5207c7d4')
-//         .then((user) => {
-//             req.user = new User(user.name, user.email, user.cart, user._id);
-//             next();
-//         })
-//         .catch((err) => console.log(err));
-// });
+app.use((req, res, next) => {
+    User.findByPk('6194e820dacdc3615785381b')
+        .then((user) => {
+            req.user = user;
+            next();
+        })
+        .catch((err) => console.log(err));
+});
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
@@ -32,10 +32,20 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 mongoose
-    .connect(
-        'mongodb://127.0.0.1:27017/db_nodejs_lab'
-    )
+    .connect('mongodb://127.0.0.1:27017/db_nodejs_lab')
     .then((result) => {
+        User.findOne().then((user) => {
+            if (!user) {
+                const user = new User({
+                    name: 'Duy Duy',
+                    email: 'duyduy@gmail.com',
+                    cart: {
+                        items: [],
+                    },
+                });
+                user.save();
+            }
+        });
         app.listen(3000);
         console.log('Connected!');
     })
