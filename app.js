@@ -1,9 +1,11 @@
 const path = require('path');
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
+const User = require('./models/user');
 
 const app = express();
 
@@ -12,11 +14,12 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-const User = require('./models/user');
+const authRoutes = require('./routes/auth');
 
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// thiết lập user giả định
 app.use((req, res, next) => {
     User.findById('6194e820dacdc3615785381b')
         .then((user) => {
@@ -28,6 +31,7 @@ app.use((req, res, next) => {
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use(authRoutes);
 
 app.use(errorController.get404);
 
@@ -46,7 +50,10 @@ mongoose
                 user.save();
             }
         });
-        app.listen(3000);
-        console.log('Connected!');
+        app.listen(3000, () => {
+            console.log('CONNECTED!');
+        });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+        console.log(err);
+    });
