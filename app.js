@@ -34,6 +34,19 @@ app.use(
     })
 );
 
+app.use((req,res, next)=>{
+    if (!req.session.user) {
+        return next();
+    }
+    User.findById(req.session.user._id)
+    .then((user) => {
+        req.user = user
+        next();
+    })
+    .catch((err) => console.log(err));
+});
+
+
 // thiết lập user giả định
 app.use((req, res, next) => {
     User.findById('6194e820dacdc3615785381b')
