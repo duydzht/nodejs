@@ -1,0 +1,79 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <div class="card col-12 col-lg-8 offset-lg-2 form__leave">
+            <div class="card-header mb-3 bg__card">
+                <h3 class=""><i class="fa-solid fa-temperature-high"></i> Khai báo thân nhiệt</h3>
+            </div>
+            <form action="/covidDetail/temperature" method="POST">
+                <div class="form-group">
+                    <label for="temperature">Nhiệt độ</label>
+                    <input class="form-control" id="temperature" name="temperature" step="0.01" type="number">
+                </div>
+                <div class="form-group">
+                    <label for="timeOfTemperature">Giờ Đo </label>
+                    <input class="form-control" id="timeOfTemperature" name="timeOfTemperature" type="time">
+                </div>
+                <div class="form-group">
+                    <label for="dateOfTemperature">Ngày Đo </label>
+                    <input class="form-control" id="dateOfTemperature" name="dateOfTemperature" type="date">
+                </div>
+                <button class="btn-custom" type="submit">Đăng Ký</button>
+            </form>
+        </div>
+
+        <div class="card col-12 col-lg-8 offset-lg-2 form__leave">
+            <div class="card-header mb-3 bg__card">
+                <h3><i class="fa-solid fa-syringe"></i> Thông tin tiêm chủng</h3>
+            </div>
+            <form action="/covidDetail/injection" method="POST">
+                <div class="row">
+                    <div class="col-12 col-lg-6 card">
+                        <div class="card-header mb-2">
+                            <p>Mũi 1</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="nameOfFirstVaccine">Tên vaccine</label>
+                            <input class="form-control" id="nameOfFirstVaccine" name="nameOfFirstVaccine" type="text">
+                        </div>
+
+                        <div class="from-group">
+                            <label for="dateOfFirstVaccine">Ngày tiêm</label>
+                            <input class="form-control" id="dateOfFirstVaccine" name="dateOfFirstVaccine" type="date">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 card">
+                        <div class="card-header mb-2">
+                            <p>Mũi 2</p>
+                        </div>
+                        <div class="from-group">
+                            <label for="nameOfSecondVaccine">Tên vaccine</label>
+                            <input class="form-control" id="nameOfSecondVaccine" name="nameOfSecondVaccine" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfSecondVaccine">Ngày tiêm</label>
+                            <input class="form-control" id="dateOfSecondVaccine" name="dateOfSecondVaccine" type="date">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-custom mt-3" type="submit">Đăng Ký</button>
+            </form>
+        </div>
+
+        <div class="card col-12 col-lg-8 offset-lg-2 form__leave">
+            <div class="card-header mb-3 bg__card">
+                <h3><i class="fa-solid fa-virus"></i> Nhật kí nhiễm bệnh</h3>
+            </div>
+            <form action="/covidDetail/infect" method="POST">
+                <div class="form-group">
+                    <label for="infectDate">Ngày nhiễm covid</label>
+                    <input class="form-control" id="infectDate" name="infectDate" type="date">
+                </div>
+                <div class="form-group">
+                    <label for="recoverDate">Ngày khỏi bệnh</label>
+                    <input class="form-control" id="recoverDate" name="recoverDate" type="date">
+                </div>
+                <button class="btn-custom" type="submit">Đăng Ký</button>
+            </form>
+        </div>
+        </div>
+        <%- include ('../includes/end.ejs')%>

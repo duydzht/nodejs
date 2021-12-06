@@ -1,0 +1,31 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <%-include ('../includes/attendanceButton.ejs')%>
+            <div class="card col-10 col-lg-8 offset-lg-2 mb-5">
+                <div class="card-header text-success">
+                    <i class="fa-solid fa-circle-check"></i> Điểm danh thành công
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Name:
+                        <div class="text-right">
+                            <%=staff.name%>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        Workplace:
+                        <div class="text-right">
+                            <%= lastStart.workPlace==='home' ? 'Nhà' : lastStart.workPlace==='company' ? 'Công ty'
+                            : 'Khách Hàng' %>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        Start:
+                        <div class="text-right">
+                            <%= lastStart.startTime.toLocaleString()%>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            </div>
+            <%- include ('../includes/end.ejs')%>

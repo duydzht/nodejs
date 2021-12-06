@@ -1,0 +1,33 @@
+<div class="black-drop"></div>
+<header class="main-header">
+    <nav class="navbar navbar-expand-lg navbar-light nav__bg fixed-top">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="/" class="nav__link <%= path === '/home' ? 'active_link' : ''%>"><i class="fa-solid fa-house"></i> HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/attendance" class="nav__link <%= path === '/attendance' ? 'active_link' : ''%>"><i class="fas fa-user-clock"></i> ĐIỂM DANH</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/staff/infoStaff" class="nav__link <%= path === '/staff/infoStaff' ? 'active_link' : ''%>"><i class="fas fa-file-invoice"></i> THÔNG TIN</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/staff/reference" class="nav__link <%= path === '/staff/reference' ? 'active_link' : ''%>"><i class="fa-solid fa-hand-holding-dollar"></i> CHẾ ĐỘ </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/covidDetail" class="nav__link <%= path === '/covid' ? 'active_link' : ''%>"><i class="fa-solid fa-shield-virus"></i> COVID-INFO</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="nav__btn my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>

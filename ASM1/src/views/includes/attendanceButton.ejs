@@ -1,0 +1,21 @@
+<div class="attendace-wrapper">
+    <div class="attendace-form row">
+        <form action="/attendance/start" method="GET" class="col-4 text-center">
+            <p class="form__title">Nếu bạn bắt đầu làm việc. Hãy click "Điểm danh"</p>
+            <button <%=isStarted ? 'disabled' : isStarted===null ? '' : '' %>
+                class="btn-custom" type="submit">Điểm Danh
+            </button>
+            <input type="hidden" name="mode" value="start">
+        </form>
+        <form action="/attendance/end" method="POST" class="col-4 text-center">
+            <p class="form__title">Bạn không làm việc nữa. Hãy click "Kết thúc"</p>
+            <button <%=isStarted ? '' : isStarted===null ? '' : 'disabled' %>
+                class="btn-custom" type="submit">Kết Thúc Làm
+            </button>
+            <input type="hidden" name="mode" value="end">
+        </form>
+        <form action="/attendance/leaveForm" method="GET" class="col-4 text-center">
+            <p class="form__title">Bạn muốn nghỉ phép?</p>
+            <button class="btn-custom" type="submit">Nghỉ Phép</button>
+        </form>
+    </div>

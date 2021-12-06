@@ -1,0 +1,64 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <div class="info-staff__wrapper">
+            <form action="/staff/infoStaff/edit" method="POST" class="card col-12 col-lg-8 offset-lg-2 form__leave">
+                <div class="card-header mb-3">
+                    <h4 class="text-info">Thông Tin Nhân Viên</h4>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <img class="card-img-top mb-2" height="350px" src="<%=staff.image %>" alt="avatar">
+                    </div>
+                    <div class="col-12 col-lg-8">
+                        <div class="inf__text">
+                            <p>
+                                Mã nhân viên:
+                                <i class="text-warning">
+                                    <%=staff._id.toString()%>
+                                </i>
+                            </p>
+                        </div>
+                        <div class="inf__text">
+                            <p>Họ tên:
+                                <i class="text-warning">
+                                    <%= staff.name %>
+                                </i>
+                            </p>
+                        </div>
+                        <div class="inf__text">
+                            <p>
+                                Ngày sinh:
+                                <i class="text-warning">
+                                    <%= staff.dOB.toLocaleDateString() %>
+                                </i>
+                            </p>
+                        </div>
+                        <div class="inf__text">
+                            <p>
+                                Hệ số lương:
+                                <i class="text-warning"><%= staff.salaryScale %></i>
+                            </p>
+                        </div>
+                        <div class="inf__text">
+                            <p>
+                                Bộ phận:
+                                <i class="text-warning"><%= staff.department %></i>
+                            </p>
+                        </div>
+                        <div class="inf__text">
+                            <p>
+                                Phép còn lại:
+                                <i class="text-warning"><%= staff.annualLeave %> ngày</i>
+                            </p>
+                        </div>
+                        <div class="mb-2 inf__text">
+                            Link Ảnh đại diện:
+                            <input class="form-control" type="text" value="<%= staff.image %>" name="image">
+                        </div>
+                        <button class="btn-custom" type="submit">Lưu lại</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+        <%- include ('../includes/end.ejs')%>

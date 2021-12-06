@@ -1,0 +1,37 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <div class="form-leave__wrapper">
+            <div class="form-leave">
+                <%if (staff.annualLeave==0) { %>
+                    <h2 class="form-leave__title">Bạn Đã Hết Số Ngày Nghỉ</h2>
+                    <a href="/attendance" class="link-btn">Quay Lại</a>
+            </div>
+        </div>
+        <% } else { %>
+            <form action="/attendance/leaveForm" method="POST" class="form__leave col-lg-8 offset-lg-2 card">
+                <div class="card-header text-info mb-4">
+                    <i class="fa-solid fa-house-person-leave"></i> Đăng kí nghỉ phép
+                </div>
+                <div class="form-group">
+                    <label for="daysLeft">Số Ngày Nghỉ Còn Lại</label>
+                    <input class="form-control" id="daysLeft" type="text" disabled value="<%=staff.annualLeave%>" />
+                </div>
+                <div class="form-group">
+                    <label for="daysLeave">Ngày đăng kí</label>
+                    <input class="form-control" id="daysLeave" type="text" name="daysLeave" />
+                </div>
+                <div class="form-group">
+                    <label for="hoursLeave">Số Giờ Nghỉ (Tối Đa 8 Giờ) </label>
+                    <input class="form-control" id="hoursLeave" type="number" max="<%= staff.annualLeave <= 1 ? (staff.annualLeave / 8) : 8 %>" name="hoursLeave" />
+                </div>
+                <div class="form-group">
+                    <label for="reason">Lý Do</label>
+                    <textarea class="form-control" id="reason" name="reason" rows="3">Lí do nghỉ phép</textarea>
+                </div>
+                <button class="btn-custom" type="submit">Gửi</button>
+            </form>
+            <%}%>
+                </div>
+                </div>
+
+                <%- include ('../includes/end.ejs')%>

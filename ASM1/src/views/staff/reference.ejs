@@ -1,0 +1,112 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <div class="grid">
+            <div class="card col-12 col-lg-8 offset-lg-2 form__leave">
+                <div class="card-header bg-info">
+                    <h4 class="text-light">
+                        <i class="fa-solid fa-calendar-days"></i> Nhật kí làm việc
+                    </h4>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Ngày</th>
+                            <th colspan="2">Giờ bắt đầu</th>
+                            <th colspan="2">Giờ kết thúc</th>
+                            <th colspan="2">Nơi làm việc</th>
+                            <th colspan="2">Giờ làm thêm</th>
+                        </tr>
+                    </thead>
+                    <% staff.workTimes.forEach(workTime=>{%>
+                        <tr>
+                            <td colspan="2">
+                                <%=workTime.startTime.getDate()%>
+                            </td>
+                            <td colspan="2">
+                                <%=workTime.startTime.getHours()%>:
+                                    <%=workTime.startTime.getMinutes()%>h
+                            </td>
+                            <td colspan="2">
+                                <%=workTime.endTime.getHours()%>:
+                                    <%=workTime.endTime.getMinutes()%>h
+                            </td>
+                            <td colspan="2">
+                                <%= workTime.workPlace==='home' ? ' Nhà' : workTime.workPlace==='company' ? ' Công ty'
+                                    : ' Khách Hàng' %>
+                            </td>
+                            <td colspan="2">
+                                <% const hoursEnd=workTime.endTime.getHours(); const
+                                    hoursStart=workTime.startTime.getHours(); const totalTimeWork=(hoursEnd* 60
+                                    +workTime.endTime.getMinutes()) - (hoursStart*60 + workTime.startTime.getMinutes());
+                                    %>
+                                    <%= totalTimeWork/60 - 8 < 0 ? 0 : (totalTimeWork/60 - 8).toFixed(2) %>
+                            </td>
+                        </tr>
+                        <% } )%>
+                </table>
+                <div class="card-footer">
+                    <p class="text-danger">Tổng số giờ làm lần gần nhất:</p>
+                    <%=lastTimeWorked%> giờ
+                </div>
+            </div>
+            <div class="card col-12 col-lg-8 offset-lg-2 form__leave">
+                <div class="card-header bg-info">
+                    <h4 class="text-light">
+                        <i class="fa-solid fa-calendar-clock"></i> Phép đã nghỉ
+                    </h4>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ngày</th>
+                            <th scope="col" colspan="3">Số Giờ</th>
+                            <th scope="col" colspan="3">Lý do</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%staff.leaveInfoList.forEach(leaveInfo=> {%>
+                            <tr>
+                                <td>
+                                    <%=leaveInfo.daysLeave%>
+                                </td>
+                                <td>
+                                    <%=leaveInfo.timesLeave%>
+                                </td>
+                                <td colspan="3">
+                                    <%=leaveInfo.reason%>
+                                </td>
+                            </tr>
+                            <%})%>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card col-12 col-lg-8 offset-lg-2 form__leave">
+                <h4 class="card-header bg-info text-light mb-2">
+                    <i class="fa-solid fa-coins"></i> Chi tiết Lương
+                </h4>
+                <form class="form-select-month" action="/staff/reference" method="POST">
+                    <label for="month">Tháng</label>
+                    <select class="form-control" name="month" id="month">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </form>
+                <p class="form-control mt-3">
+                    Lương thực lĩnh (đã trừ chi phí):
+                    <%= salary %>
+                </p>
+            </div>
+        </div>
+        </div>
+        <div class="blank"></div>
+        <%- include ('../includes/end.ejs')%>
