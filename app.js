@@ -54,7 +54,7 @@ app.use((req,res, next)=>{
 
 // thiết lập user giả định
 app.use((req, res, next) => {
-    User.findById('6194e820dacdc3615785381b')
+    User.findById('61b15e2d4661b34e9096fbbd')
         .then((user) => {
             req.user = user;
             next();
