@@ -41,22 +41,11 @@ app.use(
 app.use(csrfProtection);
 app.use(flash());
 
-app.use((req,res, next)=>{
+app.use((req, res, next) => {
     if (!req.session.user) {
         return next();
     }
     User.findById(req.session.user._id)
-    .then((user) => {
-        req.user = user
-        next();
-    })
-    .catch((err) => console.log(err));
-});
-
-
-// thiết lập user giả định
-app.use((req, res, next) => {
-    User.findById('61b15e2d4661b34e9096fbbd')
         .then((user) => {
             req.user = user;
             next();
@@ -64,11 +53,21 @@ app.use((req, res, next) => {
         .catch((err) => console.log(err));
 });
 
-app.use((req,res, next)=>{
+// // thiết lập user giả định
+// app.use((req, res, next) => {
+//     User.findById('61b15e2d4661b34e9096fbbd')
+//         .then((user) => {
+//             req.user = user;
+//             next();
+//         })
+//         .catch((err) => console.log(err));
+// });
+
+app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.isLoggedIn;
     res.locals.csrfToken = req.csrfToken();
     next();
-})
+});
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
@@ -79,7 +78,6 @@ app.use(errorController.get404);
 mongoose
     .connect(MONGODB_URI)
     .then((result) => {
-        
         app.listen(3000, () => {
             console.log('CONNECTED!');
         });
