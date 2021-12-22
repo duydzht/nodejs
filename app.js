@@ -19,6 +19,14 @@ const store = new MongoDBStore({
 });
 
 const csrfProtection = csrf();
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.filename + '-' + file.originalname);
+    },
+});
 
 const app = express();
 
@@ -29,8 +37,8 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
-app.use(express.urlencoded({ extended: false }));
-app.use(multer({dest: '/image'}).single('image'))
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multer({ storage: fileStorage }).single('image'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
     session({
@@ -50,7 +58,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
 app.use((req, res, next) => {
     // throw new Error('sync Dummy');
     if (!req.session.user) {
@@ -65,20 +72,9 @@ app.use((req, res, next) => {
             next();
         })
         .catch((err) => {
-            next(new Error(err))
+            next(new Error(err));
         });
 });
-
-// // thiết lập user giả định
-// app.use((req, res, next) => {
-//     User.findById('61b15e2d4661b34e9096fbbd')
-//         .then((user) => {
-//             req.user = user;
-//             next();
-//         })
-//         .catch((err) => console.log(err));
-// });
-
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
