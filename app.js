@@ -13,7 +13,8 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const MONGODB_URI =
-  'mongodb://localhost:27017/db_nodejs_lab';
+  'mongodb://127.0.0.1:27017/db_nodejs_lab';
+
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -101,7 +102,6 @@ app.use(errorController.get404);
 app.use((error, req, res, next) => {
   // res.status(error.httpStatusCode).render(...);
   // res.redirect('/500');
-  console.log('??', error)
   res.status(500).render('500', {
     pageTitle: 'Error!',
     path: '/500',
@@ -112,7 +112,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then(result => {
-    app.listen(3000);
+    app.listen(5000);
   })
   .catch(err => {
     console.log(err);

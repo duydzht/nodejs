@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const fileHelper = require('../util/file');
+
 const { validationResult } = require('express-validator/check');
 
 const Product = require('../models/product');
@@ -13,13 +15,9 @@ exports.getAddProduct = (req, res, next) => {
     errorMessage: null,
     validationErrors: []
   });
-}; // được ah. ok cái này a sẽ trả lời vào ngày mai
-//độ 8h a sẽ onl oki anh ^^ ok gửi anh nhé, dạ vâng ạ, gửi vô mail à anh
-
-//Gửi anh sourcecode đc k   daj 
+};
 
 exports.postAddProduct = (req, res, next) => {
-  console.log('here1')
   const title = req.body.title;
   const image = req.file;
   const price = req.body.price;
@@ -39,7 +37,6 @@ exports.postAddProduct = (req, res, next) => {
       validationErrors: []
     });
   }
-  console.log('here2')
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -59,7 +56,6 @@ exports.postAddProduct = (req, res, next) => {
       validationErrors: errors.array()
     });
   }
-  console.log('here3')
 
   const imageUrl = image.path;
 
@@ -96,7 +92,6 @@ exports.postAddProduct = (req, res, next) => {
       // res.redirect('/500');
       const error = new Error(err);
       error.httpStatusCode = 500;
-      console.log('This error')
       return next(error);
     });
 };
@@ -164,6 +159,7 @@ exports.postEditProduct = (req, res, next) => {
       product.price = updatedPrice;
       product.description = updatedDesc;
       if (image) {
+        fileHelper.deleteFile(product.imageUrl);
         product.imageUrl = image.path;
       }
       return product.save().then(result => {
@@ -199,7 +195,14 @@ exports.getProducts = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.deleteOne({ _id: prodId, userId: req.user._id })
+  Product.findById(prodId)
+    .then(product => {
+      if (!product) {
+        return next(new Error('Product not found.'));
+      }
+      fileHelper.deleteFile(product.imageUrl);
+      return Product.deleteOne({ _id: prodId, userId: req.user._id });
+    })
     .then(() => {
       console.log('DESTROYED PRODUCT');
       res.redirect('/admin/products');

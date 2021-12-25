@@ -93,11 +93,10 @@ exports.postLogin = (req, res, next) => {
           if (doMatch) {
             req.session.isLoggedIn = true;
             req.session.user = user;
-            req.session.save(err => {
-              console.log('>>>>', err); //Pass là gi thế 112233 anh ạ ok
+            return req.session.save(err => {
+              console.log(err);
               res.redirect('/');
             });
-            return
           }
           return res.status(422).render('auth/login', {
             path: '/login',
