@@ -1,6 +1,6 @@
 <%- include ('../includes/head.ejs')%>
     <%- include ('../includes/navbar.ejs')%>
-        <div class="info-staff__wrapper">
+        <!-- <div class="card mt-5">
             <form action="/staff/infoStaff/edit" method="POST" enctype="multipart/form-data">
                 <h2 class="info-staff__title">Thông Tin Nhân Viên</h2>
                 <div class="grid">
@@ -51,6 +51,72 @@
                 <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                 <button class="info-staff__btn" type="submit">Chỉnh Sửa</button>
             </form>
-        </div>
+        </div> -->
+        <aside class="profile-card">
+            <header>
+                <!-- here’s the avatar -->
+                <a target="_blank" href="#">
+                    <img src="http://2.bp.blogspot.com/-NyJI2xf4ktI/TzXxFpainAI/AAAAAAAAA7c/th7lA83QRzU/s320/jason_statham.jpg" width="100px" height="120px" class="hoverZoomLink">
+                </a>
+                <!-- the username -->
+                <h1>
+                    <%= staff.name %>
+                </h1>
+                <!-- and role or location -->
+                <h2>
+                    <%= staff.dOB.toLocaleDateString() %>
+                </h2>
+            </header>
+
+            <!-- bit of a bio; who are you? -->
+            <div class="profile-bio">
+
+                <p>
+                    Bộ phận làm việc:
+                    <%= staff.department %>
+                </p>
+                <p>
+                    Hệ số lương:
+                    <%= staff.salaryScale %>
+                </p>
+                <p>
+                    Số ngày nghỉ còn lại:
+                    <%= staff.annualLeave %>
+                </p>
+                <form action="/staff/infoStaff/edit" method="POST" enctype="multipart/form-data">
+                    <div class="info-staff__item">
+                        <label><b>Đổi avatar:</b></label>
+                        <input type="file" name="image" class="text-center">
+                    </div>
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                    <button class="btn" type="submit">Chỉnh Sửa</button>
+                </form>
+
+            </div>
+
+            <!-- some social links to show off -->
+            <ul class="profile-social-links">
+                <li>
+                    <a target="_blank" href="https://www.facebook.com/creativedonut">
+                        <i class="fab fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://twitter.com/dropyourbass">
+                        <i class="fab fa-twitter-square"></i>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://github.com/vipulsaxena">
+                        <i class="fab fa-github-square"></i>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.behance.net/vipulsaxena">
+                        <i class="fab fa-behance-square"></i>
+                    </a>
+                </li>
+            </ul>
+        </aside>
         </div>
         <%- include ('../includes/end.ejs')%>

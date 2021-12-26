@@ -1,15 +1,15 @@
 <%- include ('../includes/head.ejs')%>
     <%- include ('../includes/navbar.ejs')%>
         <%-include ('../includes/attendanceButton.ejs')%>
-            <div class='form-start__wrapper show-form'>
-                <form class="form-start" action="/attendance/start" method="POST">
-                    <div class="form-control">
+            <div class="card__leave text-center">
+                <form class="" action="/attendance/start" method="POST">
+                    <div class="">
                         <label for="name">Tên Nhân Viên</label>
-                        <input class="input-disabled" disabled type="text" value="<%= staff ? staff.name : '' %>">
+                        <input class="input-disabled form__leave" disabled type="text" value="<%= staff ? staff.name : '' %>">
                     </div>
-                    <div class="form-control">
+                    <div class="">
                         <label for="workPlace">Nơi Làm Việc</label>
-                        <select name="workPlace" id="workPlace">
+                        <select class="form__leave" name="workPlace" id="workPlace">
                             <option value="home">Nhà</option>
                             <option value="company">Công Ty</option>
                             <option value="customer">Khách Hàng</option>
@@ -17,7 +17,7 @@
                     </div>
                     <input type="hidden" name="mode" value="start">
                     <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                    <button type="submit" class="btn-custom-form">Điểm Danh</button>
+                    <button type="submit" class="btn">Điểm Danh</button>
                 </form>
             </div>
             </div>

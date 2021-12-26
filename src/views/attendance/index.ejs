@@ -1,7 +1,9 @@
 <%- include ('../includes/head.ejs')%>
     <%- include ('../includes/navbar.ejs')%>
-        <%-include ('../includes/attendanceButton.ejs', {confirmed})%>
-            <div class="centered">
+        <div class="page_index">
+            <%-include ('../includes/attendanceButton.ejs', {confirmed})%>
+        </div>
+        <!-- <div class="centered">
                 <% if (confirmed) { %>
                     <h2 class="index__title">Tháng này đã được tính lương </h2>
                     <%}else{%>
@@ -12,5 +14,5 @@
                                     <h2 class="index__title">Xin Chào!!!</h3>
                                         <p>Bạn Chưa Bắt Đầu. Mời Bạn Chọn Bắt Đầu</p>
                                         <% }} %>
-            </div>
-            <%- include ('../includes/end.ejs')%>
+            </div> -->
+        <%- include ('../includes/end.ejs')%>

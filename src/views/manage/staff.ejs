@@ -1,11 +1,12 @@
 <%- include ('../includes/head.ejs')%>
     <%- include ('../includes/navbar.ejs')%>
-        <div class="grid">
-            <div class="referenceStaff__wrapper">
-                <h3 class="referenceStaff__title">Danh sách lượt làm</h3>
-                <span class="referenceStaff__title">Nhân viên: <%=staff.name%></span>
+        <div class="card__leave text-center mt-5">
+            <div class="">
+                <h3 class="text-success text-center">Danh sách lượt làm</h3>
+                <hr/>
+                <span class="referenceStaff__title">Nhân viên: <b class="text-warning"><%=staff.name%></b></span>
                 <% if (workTimes.length>0) {%>
-                    <table class="referenceStaff__table">
+                    <table class="table">
                         <tr>
                             <th colspan="2">Ngày</th>
                             <th colspan="2">Giờ bắt đầu</th>
@@ -20,10 +21,12 @@
                                     <%=workTime.startTime.getDate() %>
                                 </td>
                                 <td colspan="2">
-                                    <%=workTime.startTime.getHours()%>:<%=workTime.startTime.getMinutes()%>h
+                                    <%=workTime.startTime.getHours()%>:
+                                        <%=workTime.startTime.getMinutes()%>h
                                 </td>
                                 <td colspan="2">
-                                    <%=workTime.endTime.getHours()%>:<%=workTime.endTime.getMinutes()%>h
+                                    <%=workTime.endTime.getHours()%>:
+                                        <%=workTime.endTime.getMinutes()%>h
                                 </td>
                                 <td colspan="2">
                                     <%= workTime.workPlace==='home' ? ' Nhà' : workTime.workPlace==='company'
@@ -48,13 +51,13 @@
                             <% } )%>
                     </table>
                     <p class="referenceStaff__article">
-                        Tổng số giờ làm lần này <%=lastTimeWorked%>
+                        Tổng số giờ làm lần này
+                        <%=lastTimeWorked%>
                     </p>
                     <%} else{ %>
                         <h3>Chưa có lượt làm</h3>
                         <% }%>
-                            <form style="text-align:center" class="form-control" action="/manageStaff/comfirmTimeWork"
-                                method="POST">
+                            <form style="text-align:center" class="" action="/manageStaff/comfirmTimeWork" method="POST">
                                 <button class="btn" type="submit">Xác nhận</button>
                                 <input type="hidden" name="staffId" value="<%= staff._id%>">
                                 <input type="hidden" name="month" value=<%=month%>>

@@ -1,9 +1,9 @@
 <div class="attendace-wrapper">
-    <div class="attendace-form">
+    <!-- <div class="attendace-form">
         <form action="/attendance/start" method="GET">
 
             <button <%=isStarted ? 'disabled' : confirmed ? 'disabled' : isStarted===null ? '' : '' %>
-                class="btn-custom" type="submit">Điểm Danh
+                class="btn" type="submit">Điểm Danh
             </button>
             <input type="hidden" name="mode" value="start">
             <input type="hidden" name="_csrf" value="<%=csrfToken%>">
@@ -11,13 +11,40 @@
         <form action="/attendance/end" method="POST">
             <input type="hidden" name="_csrf" value="<%=csrfToken%>">
             <button <%=isStarted ? '' : isStarted===null ? '' : 'disabled' %>
-                class="btn-custom" type="submit">Kết Thúc Làm
+                class="btn" type="submit">Kết Thúc Làm
             </button>
             <input type="hidden" name="mode" value="end">
         </form>
         <form action="/attendance/leaveForm" method="GET">
             <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-            <button <%=confirmed ? 'disabled' : '' %> class="btn-custom" type="submit">Nghỉ
+            <button <%=confirmed ? 'disabled' : '' %> class="btn" type="submit">Nghỉ
                 Phép</button>
         </form>
-    </div>
+
+    </div> -->
+
+    <details>
+        <summary></summary>
+        <nav class="menu">
+            <form action="/attendance/start" method="GET">
+                <button <%=isStarted ? 'disabled' : confirmed ? 'disabled' : isStarted===null ? '' : '' %>
+                    class="btn__index" type="submit">Điểm Danh
+                </button>
+                <input type="hidden" name="mode" value="start">
+                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+            </form>
+            <form action="/attendance/end" method="POST">
+                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                <button <%=isStarted ? '' : isStarted===null ? '' : 'disabled' %>
+                    type="submit"
+                    class="btn__index">Kết Thúc Làm
+                </button>
+                <input type="hidden" name="mode" value="end">
+            </form>
+            <form action="/attendance/leaveForm" method="GET">
+                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                <button <%=confirmed ? 'disabled' : '' %> type="submit" class="btn__index">Nghỉ Phép
+                </button>
+            </form>
+        </nav>
+    </details>

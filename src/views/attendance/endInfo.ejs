@@ -2,12 +2,14 @@
     <%- include ('../includes/navbar.ejs')%>
         <%-include ('../includes/attendanceButton.ejs')%>
 
-            <div class="attendace-info">
-                <h3 class="attendace-info__title">Số Giờ Đã Làm Hôm Nay: </h3>
+            <div class="card__leave">
+                <h3 class="text-success text-center">Kết thúc: </h3>
+                <hr/>
                 <p class="attendace-info__text">
+                    Thời gian làm việc hôm nay:
                     <%= timeWorked%> Giờ
                 </p>
-                <h3 class="attendace-info__title">Danh sách các lượt bắt đầu, kết thúc:</h3>
+                <h3 class="attendace-info__title">Nhật ký:</h3>
                 <ul class="attendace-info__list">
                     <% workedInDay.workTimeInDay.forEach(workTime=> {%>
                         <li class="attendace-info__item">

@@ -8,28 +8,30 @@
             </div>
         </div>
         <% } else { %>
-            <form action="/attendance/leaveForm" method="POST">
-                <h3 class="form-leave__title">Bảng Xin Nghỉ Phép</h3>
-                <div class="form-control">
-                    <label for="daysLeft">Số Ngày Nghỉ Còn Lại</label>
-                    <input id="daysLeft" class="input-disabled" type="text" disabled value="<%=staff.annualLeave%>" />
-                </div>
-                <div class="form-control">
-                    <label for="daysLeave">Chọn Ngày Nghỉ</label>
-                    <input id="daysLeave" type="text" name="daysLeave" />
-                </div>
-                <div class="form-control">
-                    <label for="hoursLeave">Số Giờ Nghỉ (Tối Đa 8 Giờ) </label>
-                    <input id="hoursLeave" type="number"
-                        max="<%= staff.annualLeave <= 1 ? (staff.annualLeave / 8) : 8 %>" name="hoursLeave" />
-                </div>
-                <div class="form-control">
-                    <label for="reason">Lý Do</label>
-                    <textarea id="reason" name="reason" cols="30" rows="10"></textarea>
-                </div>
-                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                <button class="info-staff__btn" type="submit">Gửi</button>
-            </form>
+            <div class="card__leave">
+                <form action="/attendance/leaveForm" method="POST" class="text-center">
+                    <h3 class="text-success">Form đăng kí Nghỉ Phép</h3>
+                    <hr/>
+                    <div class="">
+                        <label for="daysLeft">Số Ngày Nghỉ Còn Lại</label>
+                        <input id="daysLeft" disabled class="form__leave" type="text" disabled value="<%=staff.annualLeave%>" />
+                    </div>
+                    <div class="">
+                        <label for="daysLeave">Chọn Ngày Nghỉ</label>
+                        <input class="form__leave" id="daysLeave" type="text" name="daysLeave" />
+                    </div>
+                    <div class="">
+                        <label for="hoursLeave">Số Giờ Nghỉ (Tối Đa 8 Giờ) </label>
+                        <input class="form__leave" id="hoursLeave" type="number" max="<%= staff.annualLeave <= 1 ? (staff.annualLeave / 8) : 8 %>" name="hoursLeave" />
+                    </div>
+                    <div class="">
+                        <label for="reason">Lý Do</label>
+                        <textarea class="form__leave" id="reason" name="reason" cols="40" rows="2"></textarea>
+                    </div>
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                    <button class="btn" type="submit">Gửi</button>
+                </form>
+            </div>
             <%}%>
                 </div>
                 </div>

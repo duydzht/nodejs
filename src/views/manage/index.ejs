@@ -1,10 +1,10 @@
 <%- include ('../includes/head.ejs')%>
     <%- include ('../includes/navbar.ejs')%>
-        <div class="centered">
-            <div class="wrapper">
-                <form class="form-control form-manage" action="/manageStaff/staff" method="POST">
+        <div class="card__leave mt-5">
+            <div class="">
+                <form class="form-group" action="/manageStaff/staff" method="POST">
                     <label for="choose-staff">Chọn nhân viên</label>
-                    <select name="staff" id="choose-staff">
+                    <select class="form__leave" name="staff" id="choose-staff">
                         <option value="none">Chọn nhân viên</option>
                         <% staffs.forEach(staff=> { %>
                             <option value="<%=staff._id%>">
@@ -13,7 +13,7 @@
                             <%})%>
                     </select>
                     <label for="choose-month">Chọn tháng</label>
-                    <select name="month" id="choose-month">
+                    <select class="form__leave" name="month" id="choose-month">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -28,7 +28,7 @@
                         <option value="12">12</option>
                     </select>
                     <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                    <button type="submit" class="btn">Chọn</button>
+                    <button type="submit" class="btn__covid">Chọn</button>
                 </form>
             </div>
         </div>

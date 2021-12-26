@@ -81,7 +81,9 @@ class AttendanceController {
 
     // GET /attendance/endInfo
     getInfoEnd(req, res) {
-        const timeWorked = Methods.timeConvert(Methods.calculateTimeWorked(req.staff));
+        const timeWorked = Methods.timeConvert(
+            Methods.calculateTimeWorked(req.staff)
+        );
         res.render('attendance/endInfo', {
             path: '/attendance',
             pageTitle: 'Attendance',

@@ -1,21 +1,26 @@
 <%- include ('../includes/head.ejs')%>
     <%- include ('../includes/navbar.ejs')%>
         <%-include ('../includes/attendanceButton.ejs')%>
-            <div class="attendace-info">
-                <h3 class="attendace-info__title">Tên Nhân Viên</h3>
-                <p class="attendace-info__text">
-                    <%=staff.name%>
-                </p>
-                <h3 class="attendace-info__title">Nơi Làm Việc</h3>
-                <p class="attendace-info__text">
-                    <%= lastStart.workPlace==='home' ? 'Nhà' : lastStart.workPlace==='company' ? 'Công ty'
+            <div class="justify-content-center">
+                <div class="card__staff">
+                    <h2 class="card-title text-success text-center">
+                        <i class="fas fa-check-circle"></i> Điểm danh thành công</h2>
+                    <hr/>
+                    <h3 class="">Tên Nhân Viên</h3>
+                    <p class="text-danger font-weight-bold">
+                        <%=staff.name%>
+                    </p>
+                    <h3 class="">Nơi Làm Việc</h3>
+                    <p class="text-danger font-weight-bold">
+                        <%= lastStart.workPlace==='home' ? 'Nhà' : lastStart.workPlace==='company' ? 'Công ty'
                         : 'Khách Hàng' %>
-                </p>
-                <h3 class="attendace-info__title">Giờ Bắt Đầu</h3>
-                <p class="attendace-info__text">
-                    <%= lastStart.startTime.toLocaleString()%>
-                </p>
-                <h3 class="attendace-info__title">Chúc Bạn Làm Việc Vui Vẻ</h3>
+                    </p>
+                    <h3 class="">Giờ Bắt Đầu</h3>
+                    <p class="text-danger font-weight-bold">
+                        <%= lastStart.startTime.toLocaleString()%>
+                    </p>
+                    <h5 class="text-center mt-3"><i class="text-warning">Chúc Bạn Làm Việc Vui Vẻ!</i></h5>
+                </div>
             </div>
             </div>
             <%- include ('../includes/end.ejs')%>
