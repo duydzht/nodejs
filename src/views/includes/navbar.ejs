@@ -1,0 +1,111 @@
+<div class="black-drop"></div>
+<header>
+    <nav class="navbar">
+        <a class="navbar__brand" href="/">LOGO</a>
+        <ul class="navbar__list">
+            <% if (loggedIn) { %>
+                <li class="navbar__item">
+                    <a href="/" class="<%= path === '/home' ? 'active' : ''%>">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/attendance" class="<%= path === '/attendance' ? 'active' : ''%>">
+                        <i class="fas fa-check-double"></i> ĐIỂM DANH
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/staff/infoStaff" class="<%= path === '/staff/infoStaff' ? 'active' : ''%>">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i> THÔNG TIN
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/staff/reference" class="<%= path === '/staff/reference' ? 'active' : ''%>">
+                        <i class="fas fa-business-time"></i> WORK TIME
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/covidDetail" class="<%= path === '/covid' ? 'active' : ''%>">
+                        <i class="fas fa-shield-virus"></i> COVID
+                    </a>
+                </li>
+                <% if (role==='admin' ) {%>
+                    <li class="navbar__item">
+                        <a href="/manageStaff" class="<%= path === '/manageStaff' ? 'active' : ''%>">
+                            <i class="fas fa-tasks"></i> CHECK
+                        </a>
+                    </li>
+                    <%} }%>
+        </ul>
+        <button class="side-menu-toggle">Menu</button>
+        <% if (!isAuthenticated) { %>
+            <div class=" <%=path === 'auth/logout' ? 'navbar__auth active' : 'navbar__auth' %>">
+                <a class="login-btn" href="auth/login"><i class="fas fa-sign-in-alt"></i></a>
+            </div>
+            <%} else {%>
+                <div class=" <%=path === 'auth/logout' ? 'navbar__auth active' : 'navbar__auth' %>">
+                    <div class="grid align-center">
+                        <div class="navbar__auth-info">
+                            <span class="navbar__auth-name">
+                                <%=auth.name%>
+                            </span>
+                            <span class="navbar__auth-role">
+                                <%= auth.role==='admin' ? 'Quản lý' : 'Nhân viên' %>
+                            </span>
+                        </div>
+
+                        <form action="/auth/logout" method="POST">
+                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                            <button type="submit">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <%}%>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__list">
+        <% if (loggedIn) {%>
+            <li class="mobile-nav__item">
+                <a href="/" class="<%= path === '/home' ? 'active' : ''%>"> Home</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="/attendance" class="<%= path === '/attendace' ? 'active' : ''%>"> Timekeeping</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="/staff/infoStaff" class="<%= path === '/staff/infoStaff' ? 'active' : ''%>">Infomation</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="/staff/reference" class="<%= path === '/staff/reference' ? 'active' : ''%>">Reference</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="/covidDetail" class="<%= path === '/covid' ? 'active' : ''%>">Covid Detail</a>
+            </li>
+            <% }if (role==='admin' ) {%>
+                <li>
+                    <li class="mobile-nav__item">
+                        <a href="/manageStaff" class="<%= path === '/manageStaff' ? 'active' : ''%>">Manage Staff</a>
+                    </li>
+                </li>
+                <%}%>
+                    <% if (isAuthenticated) {%>
+                        <li class="mobile-nav__item">
+                            <form action="/auth/logout" method="POST">
+                                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                                <button type="submit">ĐĂNG XUẤT</button>
+                            </form>
+                        </li>
+                        <%} else {%>
+                            <li class="mobile-nav__item">
+                                <form action="/auth/login" method="POST">
+                                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                                    <button type="submit">ĐĂNG NHẬP</button>
+                                </form>
+                            </li>
+                            <%}%>
+    </ul>
+</nav>
