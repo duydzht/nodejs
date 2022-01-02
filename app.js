@@ -13,7 +13,7 @@ const db = require('./src/config/db');
 const Staff = require('./src/models/staff');
 
 
-const MONGODB_URI = 'mongodb://127.0.0.1:27017/nodejs_asm1';
+const MONGODB_URI = 'mongodb+srv://duyduy-99:anhduy99@cluster0.ngszl.mongodb.net/ASM_nodejs';
 
 
 // Connect to MongoDB
